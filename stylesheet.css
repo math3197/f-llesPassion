@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: black;
 
 }
 
@@ -12,6 +13,12 @@ h2,
 h3 {
     font-family: majoris;
 
+}
+
+a {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -108,4 +115,8 @@ h3 {
 .screen_right_col:hover {
     transform: scale(1.02);
 
+}
+
+.screen_right_col a {
+    border: 0;
 }
