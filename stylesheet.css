@@ -102,4 +102,10 @@ h3 {
 
 .screen_right_col {
     line-height: 0;
+    transition: transform .2s;
+}
+
+.screen_right_col:hover {
+    transform: scale(1.02);
+
 }
