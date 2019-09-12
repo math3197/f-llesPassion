@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    background-color: black;
+
+
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    font-family: majoris;
+
+}
+
+
+/****************Fonts*****************/
+
+@font-face {
+    font-family: majoris;
+    src: url(assets/fonts/majoris/Majoris_Italic.ttf);
+}
+
+/*************Screen***************/
+
+#screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+#screen_left {
+    width: 50vw;
+    height: 50vw;
+}
+
+.forside_container {
+    margin-top: 5vw;
+    width: 30vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#logo {
+    width: 5vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 10vw;
+}
+
+.forside_container h3 {
+    text-align: center;
+    font-size: 1.1rem;
+    color: black;
+    width: 100px;
+    height: 25px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 10vw;
+}
+
+.forside_container a {
+    text-decoration: none;
+}
+
+.baggrund_container {
+    background-image: url(assets/forside/2014/plakat.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: #ffc600;
+    background-position: center;
+}
+
+#screen_right {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+
+}
+
+.screen_right_col {
+    line-height: 0;
+    transition: transform .2s;
+}
+
+.screen_right_col:hover {
+    transform: scale(1.02);
+
+}
