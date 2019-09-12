@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    background-color: black;
+
 
 }
 
@@ -72,18 +74,22 @@ h3 {
 
 .baggrund_container {
     background-image: url(assets/forside/2013/plakat.jpg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     position: fixed;
     top: 0;
     left: 0;
     width: 50vw;
-    height: 50vw;
+    height: 100vh;
+    background-color: #2600b7;
+    background-position: center;
 }
 
 #screen_right {
     width: 50vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
 
 }
 
