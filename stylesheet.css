@@ -104,7 +104,6 @@ a {
     width: 50vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 
 .screen_right_col {
@@ -113,7 +112,8 @@ a {
 }
 
 .screen_right_col:hover {
-    transform: scale(1.02);
+    opacity: 0.8;
+
 
 
 
