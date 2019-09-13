@@ -112,11 +112,7 @@ h3 {
     transition: transform .2s;
 }
 
-.screen_right_col:hover {
+#screen_right img:hover {
     opacity: 0.8;
 
-}
-
-#screen_right {
-    display: grid;
 }
