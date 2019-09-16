@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="stylesheet19.css">
+
 </head>
 
 <body>
+    <template id="theTemplate">
+        <img class="filter" src="" alt="">
+    </template>
 
     <section id="screen">
         <section id="screen_left">
@@ -21,9 +25,14 @@
 
         <section id="screen_right">
             <section id="screen_right_json">
-                <template id="theTemplate">
-                    <img src="" alt="">
-                </template>
+
+                <img id="2019" class="filter" data-aargang="2019" src="assets/forside/nl19.jpg" alt="">
+                <img id="2018" class="filter" data-aargang="2018" src="assets/forside/nl18.jpg" alt="">
+                <img id="2017" class="filter" data-aargang="2017" src="assets/forside/nl17.jpg" alt="">
+                <img id="2016" class="filter" data-aargang="2016" src="assets/forside/nl16.jpg" alt="">
+                <img id="2015" class="filter" data-aargang="2015" src="assets/forside/nl15.jpg" alt="">
+                <img id="2014" class="filter" data-aargang="2014" src="assets/forside/nl14.jpg" alt="">
+                <img id="2013" class="filter" data-aargang="2013" src="assets/forside/nl13.jpg" alt="">
 
             </section>
             <section id="screen_right_menu">
@@ -36,52 +45,5 @@
 
 
     </section>
-
-    <script>
-        let menuArray;
-        const dest = document.querySelector("#screen_right_json");
-        const temp = document.querySelector("template");
-        let filterHiphop = "alle";
-        let filterPop = "alle";
-        let filterRock = "alle";
-        let filterAlternativ = "alle";
-        document.addEventListener("DOMContentLoaded", hentJson);
-
-
-
-        async function hentJson() {
-
-            console.log("hentJson");
-            let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1yZS6pl3iEsdF9bigcA8CkcHZruSn6PAEWVfEzQmRIeU/od6/public/values?alt=json");
-            menuArray = await jsonData.json();
-
-
-            visKunstnere();
-        }
-
-
-
-        function visKunstnere() {
-            dest.innerHTML = "";
-            menuArray.feed.entry.forEach(artist => {
-                if ((filterHiphop == "alle" || filterHiphop == artist.gsx$genre.$t) && (filterPop == "alle" || filterPop == artist.gsx$genre.$t) &&
-                    (filterRock == "alle" || filterRock == artist.gsx$genre.$t) &&
-                    (filterAlternativ == "alle" || filterAlternativ == artist.gsx$genre.$t)) {
-
-                    console.log("Json loaded");
-
-                    let klon = temp.cloneNode(true).content;
-                    klon.querySelector("img").src = `assets/forside/2019/${artist.gsx$ikon.$t}.jpg`;
-
-                    dest.appendChild(klon);
-
-                }
-            })
-
-        }
-
-    </script>
-
-</body>
-
-</html>
+    <script src="scriptforfra.js"></script>
+</body></html>
