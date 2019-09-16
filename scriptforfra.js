@@ -61,8 +61,12 @@
         dest.innerHTML = "";
         menuArray.feed.entry.forEach(artist => {
             if ((filterAargang == "all" || filterAargang == artist.gsx$aargang.$t)) {
+
                 const klon = temp.cloneNode(true).content;
+
                 klon.querySelector("img").src = `assets/forside/${artist.gsx$aargang.$t}/${artist.gsx$ikonid.$t}.jpg`;
+
+                dest.appendChild(klon);
 
                 console.log("5");
             }
