@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #top {
+            background-color: darkorange;
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 10vw;
+        }
+
+        #top h1 {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 5rem;
+            margin: 1.5vw 0 1vw 1vw;
+        }
+
+        .indhold {
+            width: 70vw;
+            height: 70vw;
+            background: #fff;
+            margin: 0vw auto;
+            padding: 10px;
+
+        }
+
+        .luk {
+            margin: 11vw 0 0 0;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+
+        #modtager {
+            width: 70vw;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+
+        }
+
+        #modtager h2 {
+            font-size: 1rem;
+        }
+
+        #modtager h3 {
+            font-size: 1.5rem;
+        }
+
+        @media only screen and (min-width: 600px) {
+            #modtager {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            #modtager {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <section id="top">
+        <h1>Babushka</h1>
+    </section>
+
+
+
+
+    <div id="single">
+        <button class="luk">X</button>
+        <section class="indhold">
+            <article class="enkeltRet"></article>
+            <h2></h2>
+            <h3></h3>
+            <p class="pris"></p>
+            <p class="kort"></p>
+            <p class="lang"></p>
+            <p class="oprindelse"></p>
+            <img src="" alt="">
+            <a href=""></a>
+        </section>
+
+
+    </div>
+
+
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let navn = urlParams.get("navn");
+        let menuArray;
+
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+        async function hentJson() {
+            console.log("hentJson");
+            let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/13PP4I1c-jGebrF8YWJqDQXVzQJMj5n_fVDaFYOhOZGM/od6/public/values?alt=json");
+            menuArray = await jsonData.json();
+
+            visMad();
+        }
+
+        function visMad() {
+            menuArray.feed.entry.forEach(ret => {
+                if (ret.gsx$navn.$t == navn) {
+                    document.querySelector("h2").textContent = ret.gsx$kategori.$t;
+                    document.querySelector("h3").textContent = ret.gsx$navn.$t;
+                    document.querySelector(".pris").textContent = `${ret.gsx$pris.$t} DKK`;
+                    document.querySelector(".kort").textContent = ret.gsx$kort.$t;
+                    document.querySelector(".oprindelse").textContent = `Oprindelse: ${ret.gsx$oprindelse.$t}`;
+                    document.querySelector("img").src = `imgs/small/${ret.gsx$billede.$t}-sm.jpg`;
+                }
+            })
+
+        }
+
+        document.querySelector(".luk").addEventListener("click", () => {
+            history.back();
+
+        })
+    </script>
+</body></html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #top {
+            background-color: darkorange;
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 10vw;
+        }
+
+        #top h1 {
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 5rem;
+            margin: 1.5vw 0 1vw 1vw;
+        }
+
+
+        .indhold {
+            width: 70vw;
+            height: 70vw;
+            background: #fff;
+            margin: 4rem auto;
+            padding: 10px;
+
+        }
+
+        .indhold img {
+            width: 50%;
+        }
+
+        .luk {
+            position: fixed;
+            right: 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            margin: 8vw auto 0 auto;
+
+        }
+
+        #modtager {
+            width: 70vw;
+            margin: 2vw auto 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+            height: 10vw;
+
+        }
+
+        #modtager h2 {
+            font-size: 1rem;
+        }
+
+        #modtager h3 {
+            font-size: 1.5rem;
+        }
+
+        @media only screen and (min-width: 600px) {
+            #modtager {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            #modtager {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <section id="top">
+        <h1>Babushka</h1>
+    </section>
+
+
+    <template id="theTemplate">
+        <article id="ret">
+            <h2></h2>
+            <h3></h3>
+            <p class="pris"></p>
+            <p class="kort"></p>
+            <p class="lang"></p>
+            <p class="oprindelse"></p>
+            <img src="" alt="">
+            <a href=""></a>
+            <div></div>
+        </article>
+
+
+    </template>
+
+    <h1>Alle</h1>
+    <nav class="menu">
+
+        <button class="filter valgt" data-kategori="alle">Alle</button>
+
+        <button class="filter" data-kategori="forretter">Forretter</button>
+
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
+
+        <button class="filter" data-kategori="desserter">Desserter</button>
+
+        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+
+    </nav>
+
+    <section id="modtager"></section>
+
+
+    <script>
+        let menuArray;
+        const dest = document.querySelector("#modtager");
+        const temp = document.querySelector("template");
+        let filterForretter = "alle";
+        let filterHovedretter = "alle";
+        let filterDesserter = "alle";
+        let filterDrikkevarer = "alle";
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+
+        async function hentJson() {
+
+            console.log("hentJson");
+            let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/13PP4I1c-jGebrF8YWJqDQXVzQJMj5n_fVDaFYOhOZGM/od6/public/values?alt=json");
+            menuArray = await jsonData.json();
+
+            visMad();
+            addEventListenersToButtons();
+
+        }
+
+        function visMad() {
+            dest.innerHTML = "";
+            menuArray.feed.entry.forEach(ret => {
+                if ((filterForretter == "alle" || filterForretter == ret.gsx$kategori.$t) && (filterHovedretter == "alle" || filterHovedretter == ret.gsx$kategori.$t) &&
+                    (filterDrikkevarer == "alle" || filterDrikkevarer == ret.gsx$kategori.$t) &&
+                    (filterDesserter == "alle" || filterDesserter == ret.gsx$kategori.$t)) {
+
+
+                    let klon = temp.cloneNode(true).content;
+                    klon.querySelector("h2").textContent = ret.gsx$kategori.$t;
+                    klon.querySelector("h3").textContent = ret.gsx$navn.$t;
+                    klon.querySelector(".pris").textContent = `${ret.gsx$pris.$t} DKK`;
+                    klon.querySelector(".kort").textContent = ret.gsx$kort.$t;
+                    klon.querySelector(".oprindelse").textContent = `Oprindelse: ${ret.gsx$oprindelse.$t}`;
+                    klon.querySelector("img").src = `imgs/small/${ret.gsx$billede.$t}-sm.jpg`;
+
+                    dest.appendChild(klon);
+                    dest.lastElementChild.addEventListener("click", () => {
+                        location.href = `singleview.html?navn=${ret.gsx$navn.$t}`;
+                    });
+
+                }
+            })
+
+        }
+
+        function visSingle(ret) {
+
+            console.log("vissingleret");
+
+            document.querySelector("#popup").style.display = "block";
+            document.querySelector("#popup .luk").addEventListener("click", lukSingle);
+
+            document.querySelector("#popup h2").textContent = ret.gsx$kategori.$t;
+            document.querySelector("#popup h3").textContent = ret.gsx$navn.$t;
+            document.querySelector("#popup .pris").textContent = ret.gsx$pris.$t;
+            document.querySelector("#popup .lang").textContent = ret.gsx$lang.$t;
+            document.querySelector("#popup .oprindelse").textContent = ret.gsx$oprindelse.$t;
+            document.querySelector("#popup img").src = `imgs/small/${ret.gsx$billede.$t}-sm.jpg`;
+
+
+
+        }
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+
+
+        function filtrering() {
+            filterForretter = this.dataset.kategori;
+            filterHovedretter = this.dataset.kategori;
+            filterDesserter = this.dataset.kategori;
+            filterDrikkevarer = this.dataset.kategori;
+
+
+            document.querySelector("h1").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            });
+            this.classList.add("valgt");
+            visMad();
+        }
+    </script>
+</body></html>
