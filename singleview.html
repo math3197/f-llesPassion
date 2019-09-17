@@ -2,111 +2,51 @@
 <html lang="">
 
 <head>
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="">
-
-    <style>
-        body {
-            box-sizing: border-box;
-            margin: 0;
-        }
-
-        img {
-            width: 100%;
-        }
-
-        #top {
-            background-color: darkorange;
-            position: absolute;
-            top: 0;
-            width: 100vw;
-            height: 10vw;
-        }
-
-        #top h1 {
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-size: 5rem;
-            margin: 1.5vw 0 1vw 1vw;
-        }
-
-        .indhold {
-            width: 70vw;
-            height: 70vw;
-            background: #fff;
-            margin: 0vw auto;
-            padding: 10px;
-
-        }
-
-        .luk {
-            margin: 11vw 0 0 0;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-
-        #modtager {
-            width: 70vw;
-            margin: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 10px;
-
-        }
-
-        #modtager h2 {
-            font-size: 1rem;
-        }
-
-        #modtager h3 {
-            font-size: 1.5rem;
-        }
-
-        @media only screen and (min-width: 600px) {
-            #modtager {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            #modtager {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="stylesheethjemme.css">
 </head>
 
 <body>
+    <template id="theTemplate">
+        <img src="" alt="">
+    </template>
+
+    <section id="screen">
+
+        <section id="screen_left">
+            <div class="baggrund_container">
+                <div class="forside_container">
+                </div>
+            </div>
+
+        </section>
+
+        <section id="screen_right">
+            <section class="indhold">
+                <article class="enkeltartist"></article>
+                <img src="" alt="">
+                <div class="tekst">
+                    <h2></h2>
+                    <h3></h3>
+                    <p class="kort"></p>
+                    <iframe class="youtube" src="">
+                    </iframe>
+                </div>
+
+                <div id="tilbage"><img src="assets/forside/tilbage.jpg" alt=""></div>
 
 
-    <section id="top">
-        <h1>Babushka</h1>
-    </section>
+            </section>
 
 
 
-
-    <div id="single">
-        <button class="luk">X</button>
-        <section class="indhold">
-            <article class="enkeltRet"></article>
-            <h2></h2>
-            <h3></h3>
-            <p class="pris"></p>
-            <p class="kort"></p>
-            <p class="lang"></p>
-            <p class="oprindelse"></p>
-            <img src="" alt="">
-            <a href=""></a>
         </section>
 
 
-    </div>
+    </section>
+
 
 
     <script>
@@ -118,27 +58,28 @@
 
         async function hentJson() {
             console.log("hentJson");
-            let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/13PP4I1c-jGebrF8YWJqDQXVzQJMj5n_fVDaFYOhOZGM/od6/public/values?alt=json");
+            let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1KyJ5qZB4RFcKCQNBntAse9_VE26JRWETlt-qz6IogIY/1/public/values?alt=json");
             menuArray = await jsonData.json();
 
-            visMad();
+            visSingle();
         }
 
-        function visMad() {
-            menuArray.feed.entry.forEach(ret => {
-                if (ret.gsx$navn.$t == navn) {
-                    document.querySelector("h2").textContent = ret.gsx$kategori.$t;
-                    document.querySelector("h3").textContent = ret.gsx$navn.$t;
-                    document.querySelector(".pris").textContent = `${ret.gsx$pris.$t} DKK`;
-                    document.querySelector(".kort").textContent = ret.gsx$kort.$t;
-                    document.querySelector(".oprindelse").textContent = `Oprindelse: ${ret.gsx$oprindelse.$t}`;
-                    document.querySelector("img").src = `imgs/small/${ret.gsx$billede.$t}-sm.jpg`;
+        function visSingle() {
+            console.log("her");
+            menuArray.feed.entry.forEach(artist => {
+                if (artist.gsx$navn.$t == navn) {
+                    document.querySelector("h2").textContent = artist.gsx$navn.$t;
+                    document.querySelector("h3").textContent = artist.gsx$genre.$t;
+                    document.querySelector(".kort").textContent = artist.gsx$beskrivelse.$t;
+                    document.querySelector("img").src = `assets/forside/${artist.gsx$aargang.$t}/${artist.gsx$ikonid.$t}.jpg`;
+                    document.querySelector(".youtube").src = artist.gsx$video.$t;
+
                 }
             })
 
         }
 
-        document.querySelector(".luk").addEventListener("click", () => {
+        document.querySelector("#tilbage").addEventListener("click", () => {
             history.back();
 
         })
