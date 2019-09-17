@@ -1,13 +1,14 @@
         let menuArray;
         const dest = document.querySelector("#screen_right_json");
         const temp = document.querySelector("template");
-        let filter2019 = "alle";
-        let filter2018 = "alle";
-        let filter2017 = "alle";
-        let filter2016 = "alle";
-        let filter2015 = "alle";
-        let filter2014 = "alle";
-        let filter2013 = "alle";
+        let filter;
+        //        let filter2019 = "alle";
+        //        let filter2018 = "alle";
+        //        let filter2017 = "alle";
+        //        let filter2016 = "alle";
+        //        let filter2015 = "alle";
+        //        let filter2014 = "alle";
+        //        let filter2013 = "alle";
         document.addEventListener("DOMContentLoaded", getJson);
 
 
@@ -22,13 +23,17 @@
         function visKunstnere() {
             dest.innerHTML = "";
             menuArray.feed.entry.forEach(artist => {
-                if ((filter2019 == "alle" || filter2019 == artist.gsx$aargang.$t) &&
+                if (
+                    (filter == "alle" || filter == artist.gsx$aargang.$t)
+
+                    /*(filter2019 == "alle" || filter2019 == artist.gsx$aargang.$t) &&
                     (filter2018 == "alle" || filter2018 == artist.gsx$aargang.$t) &&
                     (filter2017 == "alle" || filter2017 == artist.gsx$aargang.$t) &&
                     (filter2016 == "alle" || filter2016 == artist.gsx$aargang.$t) &&
                     (filter2015 == "alle" || filter2015 == artist.gsx$aargang.$t) &&
                     (filter2014 == "alle" || filter2014 == artist.gsx$aargang.$t) &&
-                    (filter2013 == "alle" || filter2013 == artist.gsx$aargang.$t)) {
+                    (filter2013 == "alle" || filter2013 == artist.gsx$aargang.$t)*/
+                ) {
 
                     const klon = temp.cloneNode(true).content;
 
@@ -56,14 +61,15 @@
         }
 
         function filtrering() {
-            filter2019 = this.dataset.aargang;
-            filter2018 = this.dataset.aargang;
-            filter2017 = this.dataset.aargang;
-            filter2016 = this.dataset.aargang;
-            filter2015 = this.dataset.aargang;
-            filter2014 = this.dataset.aargang;
-            filter2013 = this.dataset.aargang;
-
+            //            filter2019 = this.dataset.aargang;
+            //            filter2018 = this.dataset.aargang;
+            //            filter2017 = this.dataset.aargang;
+            //            filter2016 = this.dataset.aargang;
+            //            filter2015 = this.dataset.aargang;
+            //            filter2014 = this.dataset.aargang;
+            //            filter2013 = this.dataset.aargang;
+            filter = this.dataset.aargang;
+            console.log("Filter", filter);
             document.querySelectorAll(".filter").forEach(elm => {
                 elm.classList.remove("valgt");
             });
