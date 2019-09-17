@@ -14,7 +14,7 @@
         async function getJson() {
             let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1KyJ5qZB4RFcKCQNBntAse9_VE26JRWETlt-qz6IogIY/1/public/values?alt=json");
             menuArray = await jsonData.json();
-            //visKunstnere();
+            visKunstnere();
             addEventListenersToButtons();
 
         }
