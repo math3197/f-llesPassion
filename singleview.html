@@ -72,7 +72,7 @@
                     document.querySelector("h3").textContent = artist.gsx$genre.$t;
                     document.querySelector(".kort").textContent = artist.gsx$beskrivelse.$t;
                     document.querySelector("img").src = `assets/forside/${artist.gsx$aargang.$t}/${artist.gsx$ikonid.$t}.jpg`;
-                    document.querySelector(".youtube").src = artist.gsx$video.$t;
+                    document.querySelector(".youtube").src = `https://www.youtube.com/embed/v=${ artist.gsx$video.$t}`;
 
                 }
             })
@@ -83,5 +83,8 @@
             history.back();
 
         })
+
     </script>
-</body></html>
+</body>
+
+</html>
