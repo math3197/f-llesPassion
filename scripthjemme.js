@@ -37,10 +37,17 @@
 
                     dest.appendChild(klon);
 
-                }
+                    dest.lastElementChild.addEventListener("click", () => {
+                        location.href = `singleview.html?navn=${artist.gsx$navn.$t}`;
+                    });
 
+                }
             })
+
         }
+
+
+
 
         function addEventListenersToButtons() {
             document.querySelectorAll(".filter").forEach(elm => {
