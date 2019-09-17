@@ -70,9 +70,9 @@
             //            filter2013 = this.dataset.aargang;
             filter = this.dataset.aargang;
             console.log("Filter", filter);
-            document.querySelectorAll(".filter").forEach(elm => {
+            /* document.querySelectorAll(".filter").forEach(elm => {
                 elm.classList.remove("valgt");
             });
-            this.classList.add("valgt");
+            this.classList.add("valgt"); */
             visKunstnere();
         }
