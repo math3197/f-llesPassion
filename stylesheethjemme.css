@@ -106,12 +106,23 @@ h3 {
     height: 25vw;
 }
 
+#popup_tilbage {
+    width: 25vw;
+    height: 25vw;
+}
+
 button {
     width: 25vw;
     height: 25vw;
     border: 0;
     background-size: contain;
 
+}
+
+.luk {
+    position: fixed;
+    right: 0;
+    font-size: 2rem;
 }
 
 #button1 {
@@ -148,6 +159,7 @@ button {
 
 #bg2019 {
     background-image: url(assets/forside/plakater/2019.jpg);
+    background-color: #261e1c;
 }
 
 #bg2018 {
@@ -164,15 +176,17 @@ button {
 
 #bg2015 {
     background-image: url(assets/forside/plakater/2015.jpg);
+    background-color: #f5cf54;
 }
 
 #bg2014 {
     background-image: url(assets/forside/plakater/2014.jpg);
-    z-index: 100;
+    background-color: #fec502;
 }
 
 #bg2013 {
     background-image: url(assets/forside/plakater/2013.jpg);
+    background-color: #2600b7;
 
 }
 
@@ -184,28 +198,40 @@ button {
 
 /*SINGLE VIEW*/
 
-.indhold {
+#indhold {
+    position: absolute;
+    top: 0;
+    left: 50vw;
     width: 50vw;
-    height: 50vw;
-    color: white;
+    height: auto;
+    background-color: black;
+    z-index: 100;
 }
 
-.indhold h2 {
+#popup {
+    display: none;
+}
+
+#indhold h2 {
+    color: white;
     margin: 0;
     font-size: 3rem;
 }
 
-.indhold h3 {
+#indhold h3 {
+    color: white;
     margin: 0;
     font-size: 1rem;
 }
 
-.indhold p {
+#indhold p {
+    color: white;
+
     font-size: 0.8rem;
     font-family: sans-serif;
 }
 
-.indhold .tekst {
+#indhold .tekst {
     margin: 3vw 5vw 10vw 5vw;
 }
 
@@ -259,7 +285,7 @@ iframe {
         display: none;
     }
 
-    .indhold {
+    #indhold {
         display: grid;
         grid-template-columns: 1fr;
         width: 100vw;
