@@ -282,6 +282,11 @@ iframe {
 
     }
 
+    #logo {
+        width: 15vw;
+        height: 15vw;
+    }
+
     #menu {
         display: grid;
         grid-template-columns: 1fr;
