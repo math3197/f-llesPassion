@@ -125,6 +125,17 @@ button {
     font-size: 2rem;
 }
 
+#logo {
+    position: fixed;
+    top: 1vw;
+    left: 1vw;
+    width: 4vw;
+    height: 4vw;
+    background-size: cover;
+    background-image: url(assets/forside/logo.png);
+    z-index: 100;
+}
+
 #button1 {
     background-image: url(assets/forside/years/nl19.jpg);
 }
@@ -163,15 +174,18 @@ button {
 }
 
 #bg2018 {
-    background-image: url(assets/forside/plakater/2019.jpg);
+    background-image: url(assets/forside/plakater/2018.jpg);
+    background-color: black;
 }
 
 #bg2017 {
-    background-image: url(assets/forside/plakater/2019.jpg);
+    background-image: url(assets/forside/plakater/2017.jpg);
+    background-color: white;
 }
 
 #bg2016 {
-    background-image: url(assets/forside/plakater/2019.jpg);
+    background-image: url(assets/forside/plakater/2016.jpg);
+    background-color: #212071;
 }
 
 #bg2015 {
