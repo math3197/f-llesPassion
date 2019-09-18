@@ -191,6 +191,7 @@ iframe {
     }
 
     #screen_left {
+        height: 100vh;
         grid-template-columns: 1fr;
         width: 100vw;
     }
@@ -199,6 +200,13 @@ iframe {
         display: grid;
         grid-template-columns: 1fr;
         width: 100vw;
+    }
+
+    #screen_right_json {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100vw;
+
     }
 
     #menu {
@@ -212,6 +220,23 @@ iframe {
         height: 100vw;
         border: 0;
         background-size: contain;
+    }
+
+    .mobil {
+        display: none;
+    }
+
+    .indhold {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100vw;
+    }
+
+    iframe {
+        margin-top: 5vw;
+        width: 90vw;
+        height: 50vw;
+        border: none;
     }
 
     #tilbage {
