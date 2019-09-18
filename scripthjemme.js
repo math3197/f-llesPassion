@@ -23,8 +23,7 @@
         function visKunstnere() {
             dest.innerHTML = "";
             menuArray.feed.entry.forEach(artist => {
-                if (
-                    (filter == "alle" || filter == artist.gsx$aargang.$t)
+                if ((filter == "alle" || filter == artist.gsx$aargang.$t)
 
                     /*(filter2019 == "alle" || filter2019 == artist.gsx$aargang.$t) &&
                     (filter2018 == "alle" || filter2018 == artist.gsx$aargang.$t) &&
