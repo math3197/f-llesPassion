@@ -232,7 +232,7 @@ button {
 }
 
 #indhold .tekst {
-    margin: 3vw 5vw 10vw 5vw;
+    margin: 3vw 5vw 0 5vw;
 }
 
 iframe {
@@ -289,6 +289,7 @@ iframe {
         display: grid;
         grid-template-columns: 1fr;
         width: 100vw;
+        left: 0;
     }
 
     iframe {
@@ -302,6 +303,11 @@ iframe {
         width: 100vw;
         height: 100vw;
         border: 0;
+    }
+
+    #popup_tilbage {
+        width: 100vw;
+        height: 100vw;
     }
 
     .baggrund_container {

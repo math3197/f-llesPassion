@@ -57,6 +57,7 @@
             console.log("vissingleret");
 
             document.querySelector("#screen_right_json").style.display = "none";
+            document.querySelector("#menu").style.display = "none";
             document.querySelector("#popup").style.display = "block";
             document.querySelector("#popup_tilbage").addEventListener("click", lukSingle);
             document.querySelector("#indhold h2").textContent = artist.gsx$navn.$t;
@@ -72,6 +73,7 @@
         function lukSingle() {
             document.querySelector("#popup").style.display = "none";
             document.querySelector("#screen_right_json").style.display = "block";
+            document.querySelector("#menu").style.display = "block";
 
         }
 
