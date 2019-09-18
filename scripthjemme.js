@@ -55,7 +55,7 @@
         function visSingle(artist) {
 
             console.log("vissingleret");
-
+            window.scrollTo(0, 0);
             document.querySelector("#screen_right_json").style.display = "none";
             document.querySelector("#menu").style.display = "none";
             document.querySelector("#popup").style.display = "block";
