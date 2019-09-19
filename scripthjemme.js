@@ -2,18 +2,13 @@
         const dest = document.querySelector("#screen_right_json");
         const temp = document.querySelector("template");
         let filter;
-        //        let filter2019 = "alle";
-        //        let filter2018 = "alle";
-        //        let filter2017 = "alle";
-        //        let filter2016 = "alle";
-        //        let filter2015 = "alle";
-        //        let filter2014 = "alle";
-        //        let filter2013 = "alle";
 
         document.addEventListener("DOMContentLoaded", getJson);
 
 
         async function getJson() {
+
+            //            Variablen her indlæser JSON dataen
 
             let jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1KyJ5qZB4RFcKCQNBntAse9_VE26JRWETlt-qz6IogIY/1/public/values?alt=json");
             menuArray = await jsonData.json();
@@ -23,17 +18,13 @@
         }
 
         function visKunstnere() {
+
+            //            Funktionen visKunstnere laver et filter, så kunstnerne for det valgte år kan vises
+
             dest.innerHTML = "";
             menuArray.feed.entry.forEach(artist => {
                 if ((filter == "alle" || filter == artist.gsx$aargang.$t)
 
-                    /*(filter2019 == "alle" || filter2019 == artist.gsx$aargang.$t) &&
-                    (filter2018 == "alle" || filter2018 == artist.gsx$aargang.$t) &&
-                    (filter2017 == "alle" || filter2017 == artist.gsx$aargang.$t) &&
-                    (filter2016 == "alle" || filter2016 == artist.gsx$aargang.$t) &&
-                    (filter2015 == "alle" || filter2015 == artist.gsx$aargang.$t) &&
-                    (filter2014 == "alle" || filter2014 == artist.gsx$aargang.$t) &&
-                    (filter2013 == "alle" || filter2013 == artist.gsx$aargang.$t)*/
                 ) {
 
                     const klon = temp.cloneNode(true).content;
@@ -54,6 +45,8 @@
 
         function visSingle(artist) {
 
+            //visSingle(artist) skjuler de andre paneler, og fjerne display.none for popup vinduet, så popupen kan ses.
+
             console.log("vissingleret");
             window.scrollTo(0, 0);
             document.querySelector("#screen_right_json").style.display = "none";
@@ -71,6 +64,8 @@
         }
 
         function lukSingle() {
+
+            // lukSingle lukker pop up vinduet
             document.querySelector("#popup").style.display = "none";
             document.querySelector("#screen_right_json").style.display = "block";
             document.querySelector("#menu").style.display = "block";
@@ -80,6 +75,8 @@
 
 
         function addEventListenersToButtons() {
+
+            // addEventListenersToButtons gør det muligt at klikke på årgangene, de efterfølgende funtioner toogleMenu(1,2,3,4,5,6,7,8) skifter så baggrunden i venstre side af skærmen
             document.querySelector("#button8").addEventListener("click", toggleMenu2);
             document.querySelector("#button7").addEventListener("click", toggleMenu3);
             document.querySelector("#button6").addEventListener("click", toggleMenu4);
@@ -171,18 +168,11 @@
         }
 
         function filtrering() {
-            //            filter2019 = this.dataset.aargang;
-            //            filter2018 = this.dataset.aargang;
-            //            filter2017 = this.dataset.aargang;
-            //            filter2016 = this.dataset.aargang;
-            //            filter2015 = this.dataset.aargang;
-            //            filter2014 = this.dataset.aargang;
-            //            filter2013 = this.dataset.aargang;
+
+            // filtrering filtrere kunstnerne og viser dem
+
             filter = this.dataset.aargang;
             console.log("Filter", filter);
-            /* document.querySelectorAll(".filter").forEach(elm => {
-                elm.classList.remove("valgt");
-            });
-            this.classList.add("valgt"); */
+
             visKunstnere();
         }
